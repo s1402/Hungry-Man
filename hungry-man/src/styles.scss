@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+button {
+  text-transform: none;
+  cursor: pointer;
+  padding: 1rem;
+  margin: 1rem;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+  border-radius: 4px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff8a00, #ffc837);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transition: transform 0.5s ease-in-out;
+    transform: scale(1.2);
+  }
+}

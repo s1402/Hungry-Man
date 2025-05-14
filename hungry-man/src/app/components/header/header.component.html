@@ -1,0 +1,22 @@
+<header>
+    <div class="header-container">
+        <div class="logo">Hungry Man</div>
+
+        <div class="search-bar-container" #dropDownContainer>
+            <input [(ngModel)] ="userInput" #searchInput class="search-bar" type="text" placeholder="Search recipes..." />
+
+            <div *ngIf="recipeDetails && showDropDown" class="recipes-container">
+                <ul *ngIf="recipeDetails.recipes.length;else noRecipe" class="recipe-dropdown">
+                    <li *ngFor="let recipe of recipeDetails.recipes" (click)="selectRecipe(recipe)">
+                        {{recipe.name}}
+                    </li>
+                </ul>
+                <ng-template #noRecipe>
+                    <li class="no-data">
+                        No Recipes Found 😟
+                    </li>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</header>

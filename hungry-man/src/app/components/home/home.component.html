@@ -1,0 +1,43 @@
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<button *ngIf="!selectedRecipe" class="sort" (click)="sort()"> Sort By Cuisine </button>
+<div *ngIf="!selectedRecipe; else showRecipe" class="home-wrapper">
+  <div *ngFor="let cuisine of recipeByCuisineArray;let i = index" class="cuisine-container">
+    <!---------------  Cuisine Name ---------------->
+    <h2 class="cuisine-title">{{ cuisine[0] }}</h2>
+    <div class="recipe-carousel-container">
+      <!-----------------------  chevron-left icon  ------------------------->
+      <i class="fa-solid fa-chevron-left arrow left-arrow" (click)="prev(i)"></i>
+
+      <!--- carousel-wrapper  ---->
+      <div class="carousel-wrapper">
+        <!----  carousel-track  --->
+        <div class="carousel-track" [style.transform]="'translateX(-' + currentIndices[i] * 100 + '%)'">
+
+          <!-----------------------  recipe-card ------------------------->
+          <div *ngFor="let recipe of cuisine[1]" class="recipe-card" (click)="getRecipeDetails(cuisine,i)">
+            <img [src]="recipe.image" [alt]="recipe.name" class="recipe-image">
+            <div class="recipe-info">
+              <h3>{{ recipe.name }}</h3>
+              <p class="rating">⭐ {{ recipe.rating }} / 5</p>
+              <p class="meta">
+                {{ recipe.difficulty }} • {{ recipe.cookTimeMinutes + recipe.prepTimeMinutes }} mins • {{
+                recipe.caloriesPerServing }} cal
+              </p>
+              <p class="tags">
+                <span *ngFor="let tag of recipe.tags" class="tag">{{ tag }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--------------------------  chevron-right icon  ---------------------------->
+      <i class="fa-solid fa-chevron-right arrow right-arrow" (click)="next(i)"></i>
+    </div>
+  </div>
+</div>
+<ng-template #showRecipe>
+  <app-recipe-details *ngIf="selectedRecipe" [selectedRecipe]="selectedRecipe"
+    (goBackEvent)="navigateToHome()"></app-recipe-details>
+</ng-template>

@@ -1,0 +1,24 @@
+<button (click)="goBack()"> Go Back </button>
+<div *ngIf="selectedRecipe" class="recipe-details-wrapper">
+    <h2 class="recipe-name"> Lets make {{selectedRecipe.name}} !</h2>
+    <div class="recipe-details-container">
+        <img [src]="selectedRecipe.image" alt="selectedRecipe.name" class="recipe-image">
+
+        <div class="ingredients">
+            <h3> Ingredients</h3>
+            <ul>
+            <li *ngFor="let ingredient of selectedRecipe.ingredients ">
+                {{ingredient}}
+            </li>
+        </ul>
+        </div>
+        <div class="instructions">
+            <h3> Instructions</h3>
+        <ul>
+            <li *ngFor="let instruction of selectedRecipe.instructions ">
+                {{instruction}}
+            </li>
+        </ul>
+        </div>
+    </div>
+</div>
